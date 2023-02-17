@@ -1,0 +1,25 @@
+# Set the version of docker compose to use
+version: "3.9"
+
+# The containers that compose the project
+services:
+  postgres:
+    image: postgres:14.7
+    restart: always
+    container_name: postgres
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: ${DB_DATABASE}
+      POSTGRES_USER: ${DB_USERNAME}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      TZ: "GMT"
+      PGTZ: "GMT"
+    volumes:
+      - stress_tracking_db:/data/postgres
+    env_file:
+      - .env
+
+volumes:
+  stress_tracking_db:
+    driver: local
