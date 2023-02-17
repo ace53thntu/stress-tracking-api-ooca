@@ -22,6 +22,7 @@
     "db:up": "docker-compose up -d postgres",
     "db:down": "docker-compose stop postgres",
     "db:log": "docker-compose logs -f postgres",
+    "typeorm": "ts-node -r tsconfig-paths/register node_modules/.bin/typeorm",
     "migration:create": "f() { yarn typeorm migration:create \"./src/database/migrations/$@\"; }; f",
     "migration:generate": "f() { yarn typeorm migration:generate -d ./ormconfig.ts \"./src/database/migrations/$@\"; }; f",
     "migration:revert": "yarn typeorm migration:revert -d ./ormconfig.ts",
@@ -74,6 +75,10 @@
       "ts"
     ],
     "rootDir": "src",
+    "moduleNameMapper": {
+      "^src/(.*)$": "<rootDir>/$1",
+      "^@/(.*)$": "<rootDir>/$1"
+    },
     "testRegex": ".*\\.spec\\.ts$",
     "transform": {
       "^.+\\.(t|j)s$": "ts-jest"

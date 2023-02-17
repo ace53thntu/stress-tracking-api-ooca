@@ -4,6 +4,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { SnakeNamingStrategy } from './utils/snake-naming.strategy';
+import { TrackingModule } from './modules/tracking/tracking.module';
 
 @Module({
   imports: [
@@ -30,6 +31,7 @@ import { SnakeNamingStrategy } from './utils/snake-naming.strategy';
         };
       },
     }),
+    TrackingModule,
   ],
   controllers: [AppController],
   providers: [AppService],
